@@ -32,6 +32,11 @@ class USerService extends SuperService {
     if (!result) return { type: 'NOT_FOUND', payload: result };
     return { type: null, payload: result };
   }
+
+  async deleteUser(id) {
+    await super.delete(id);
+    return { type: null, payload: 'Deletado com sucesso' };
+  }
 }
 
 module.exports = {

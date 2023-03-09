@@ -26,6 +26,20 @@ function Admin() {
     newFetch();
   }, []);
 
+  const handleDeleteUser = (id) => {
+    try {
+      httpClient.delete(backendUrl(`admin/manager/${id}`))
+        .then(() => {
+          const newList = userList.filter((user) => user.id !== id);
+          setUserList(newList);
+        });
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      httpClient.defaults.headers.post.authorization = token;
+    } catch (e) {
+      return e.message;
+    }
+  };
+
   return (
     <div>
       <NavBar />
@@ -53,6 +67,7 @@ function Admin() {
           role={ role }
           index={ index }
           key={ index }
+          handleDeleteUser={ handleDeleteUser }
         />))}
       </div>
     </div>

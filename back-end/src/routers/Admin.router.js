@@ -3,8 +3,10 @@ const { UserController } = require('../controllers');
 
 const router = express.Router();
 
-const UserContr = new UserController();
+const userController = new UserController();
 
-router.get('/manager', UserContr.getAllUsers);
+router.get('/manager', userController.getAllUsers);
+
+router.delete('/manager/:id', userController.deleteUser);
 
 module.exports = router;
