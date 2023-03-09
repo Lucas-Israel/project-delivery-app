@@ -53,6 +53,7 @@ const loginUser = async ({ email, password }) => {
     role = user.role;
 
     localStorage.setItem('user', JSON.stringify(saveUser));
+    return { user };
   } catch (err) {
     error = true;
   }

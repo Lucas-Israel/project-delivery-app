@@ -39,12 +39,10 @@ function CardOrders({ id, status, date, price }) {
 }
 
 CardOrders.propTypes = {
-  id: PropTypes.number.isRequired,
-  // sellerId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  // index: PropTypes.number.isRequired,
 };
 
 export default CardOrders;

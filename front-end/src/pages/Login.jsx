@@ -16,6 +16,7 @@ function Login({ history }) {
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
   const { status } = useParams();
+
   const testToken = async () => {
     const { error } = await getMineSales();
     const { push } = history;
@@ -56,11 +57,15 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error, role } = await loginUser({ email, password });
-    if (error) return setErrorText('usuario invalido');
     const { push } = history;
+    const { error, user, role } = await loginUser({ email, password });
+    if (error) return setErrorText('usuario invalido');
+    if (user.role === 'customer') {
+      return push('/customer/products');
+    } if (user.role === 'seller') {
+      return push('/seller/orders');
+    }
     if (role === 'administrator') return push('/admin/manage');
-    push('/customer/products');
   };
 
   const semConta = (e) => {
