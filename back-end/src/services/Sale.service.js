@@ -26,7 +26,6 @@ class SaleService extends SuperService {
 
   async getSales({ userId, role }) {
     const idFinder = (role === 'customer') ? { userId } : { sellerId: userId };
-    console.log('🚀 ~ file: Sale.service.js:29 ~ SaleService ~ getSales ~ idFinder:', idFinder);
     const result = await super.findAll({
       where: idFinder,
       include: {
