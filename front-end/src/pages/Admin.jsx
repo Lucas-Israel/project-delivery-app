@@ -16,7 +16,6 @@ function Admin() {
 
   const handleDeleteUser = (id) => {
     try {
-      console.log('Eu sou o id: ', id);
       httpClient.delete(backendUrl(`admin/manager/${id}`))
         .then(() => {
           const newList = userList.filter((user) => user.id !== id);
@@ -25,7 +24,7 @@ function Admin() {
       const { token } = JSON.parse(localStorage.getItem('user'));
       httpClient.defaults.headers.post.authorization = token;
     } catch (e) {
-      console.log('Eu sou o Erro: ', e);
+      return e.message;
     }
   };
 
