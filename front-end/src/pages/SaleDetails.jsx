@@ -10,11 +10,9 @@ function SaleDetails() {
   const [products, setProducts] = useState([]);
   const [expectedSale, setExpectedSale] = useState({});
   const { id } = useParams();
-  console.log('🚀 ~ file: SaleDetails.jsx:12 ~ SaleDetails ~ id :', id);
   useEffect(() => {
     const getProducts = async () => {
       const { sales } = await getMineSales();
-      console.log('🚀 ~ file: SaleDetails.jsx:17 ~ getProducts ~ sales :', sales);
       const correctSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(correctSale);
       const r = correctSale.SalesProducts.map((product) => (
