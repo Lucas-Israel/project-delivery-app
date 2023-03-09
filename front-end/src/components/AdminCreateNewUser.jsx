@@ -77,7 +77,7 @@ function AdminCreateNewUserForm({ adminRegisterUser }) {
           <span>Senha</span>
           <input
             type="password"
-            placeholder="**************"
+            placeholder="******"
             data-testid="admin_manage__input-password"
             value={ password }
             onChange={ passwordHandler }

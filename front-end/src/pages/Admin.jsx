@@ -6,6 +6,7 @@ import { httpClient, backendUrl, admingUserRegister } from '../httpClient';
 
 function Admin() {
   const [userList, setUserList] = useState([]);
+  const [erro, setErro] = useState('');
 
   const newFetch = async () => {
     await httpClient.get(backendUrl('admin/manager'))
@@ -16,6 +17,7 @@ function Admin() {
 
   const adminRegisterUser = async ({ name, email, password, role }) => {
     const { error } = await admingUserRegister({ name, email, password, role });
+    if (error) setErro('Usuário ja existe');
     newFetch();
     return error;
   };
@@ -31,6 +33,14 @@ function Admin() {
         <h3>
           Cadastrar novo usuário
         </h3>
+        {
+          erro ? (
+            <small
+              data-testid="admin_manage__element-invalid-register"
+            >
+              {erro}
+            </small>) : null
+        }
         <AdminCreateNewUserForm adminRegisterUser={ adminRegisterUser } />
       </div>
 

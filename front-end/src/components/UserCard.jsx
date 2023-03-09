@@ -8,7 +8,7 @@ function UserCard({ id, name, email, role, index }) {
         {id}
       </div>
 
-      <div data-testid="admin_manage__input-email">
+      <div data-testid={ `admin_manage__element-user-table-name-${index}` }>
         {name}
       </div>
 
