@@ -7,6 +7,6 @@ const userController = new UserController();
 
 router.get('/manager', userController.getAllUsers);
 
-router.delete('/me', userController.deleteUser);
+router.delete('/manager/:id', userController.deleteUser);
 
 module.exports = router;

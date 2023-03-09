@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function UserCard({ id, name, email, role, index }) {
+function UserCard({ id, name, email, role, index, handleDeleteUser }) {
   return (
     <div key={ index }>
       <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
@@ -23,6 +23,7 @@ function UserCard({ id, name, email, role, index }) {
       <button
         data-testid={ `admin_manage__element-user-table-remove-${index}` }
         type="button"
+        onClick={ () => handleDeleteUser(id) }
       >
         Excluir
       </button>
@@ -36,6 +37,7 @@ UserCard.propTypes = {
   email: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
+  handleDeleteUser: PropTypes.func.isRequired,
 };
 
 export default UserCard;

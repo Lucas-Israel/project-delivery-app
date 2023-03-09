@@ -33,8 +33,8 @@ class USerService extends SuperService {
     return { type: null, payload: result };
   }
 
-  async deleteUser(email) {
-    await super.delete(email);
+  async deleteUser(id) {
+    await super.delete(id);
     return { type: null, payload: 'Deletado com sucesso' };
   }
 }

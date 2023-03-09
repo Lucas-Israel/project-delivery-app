@@ -7,6 +7,7 @@ class UserController {
     this.login = this.login.bind(this);
     this.createUser = this.createUser.bind(this);
     this.getAllUsers = this.getAllUsers.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   async login(req, res) {
@@ -53,9 +54,10 @@ class UserController {
 
   async deleteUser(req, res) {
     try {
-      const { email } = req.body;
-      await this.service.deleteUser(email);
-      return res.status(204).json({ message: 'Usuário deletado com sucesso' });
+      const { id } = req.params;
+      console.log('Eu sou o id do Back: ', id);
+      const { payload } = await this.service.deleteUser(id);
+      return res.status(204).json({ message: payload });
     } catch (error) {
       return res.status(500).json({
         message: 'Erro ao deletar usuário',
