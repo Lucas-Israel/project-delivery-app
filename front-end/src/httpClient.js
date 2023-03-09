@@ -10,13 +10,28 @@ const httpClient = axios.create();
 
 httpClient.defaults.timeout = 500;
 
-const registUser = async ({ name, email, password }) => {
+const admingUserRegister = async ({ name, email, password, role }) => {
+  let error = false;
+  try {
+    await httpClient.post(
+      backendUrl('register'),
+      {
+        name, email, password, role,
+      },
+    );
+  } catch (err) {
+    error = true;
+  }
+  return { error };
+};
+
+const registUser = async ({ name, email, password, role = 'customer' }) => {
   let error = false;
   try {
     const res = await httpClient.post(
       backendUrl('register'),
       {
-        name, email, password,
+        name, email, password, role,
       },
     );
     const saveUser = {
@@ -24,10 +39,7 @@ const registUser = async ({ name, email, password }) => {
       email,
       token: res.data.token,
     };
-    // console.log(saveUser);
     httpClient.defaults.headers.post.authorization = saveUser.token;
-    // console.log(httpClient.defaults.headers.post.Authorization);
-    // console.log('passei do autozation');
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
@@ -40,7 +52,6 @@ const loginUser = async ({ email, password }) => {
   let role;
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
-    // console.log('passou: ', res);
     const { token, user } = res.data;
     const saveUser = {
       id: user.id,
@@ -61,7 +72,6 @@ const loginUser = async ({ email, password }) => {
 
 const sendSale = async ({ deliveryAddress, deliveryNumber }) => {
   const products = getCartProducts();
-  // console.log(products);
   const nProducts = products.map((product) => ({ ...product, productId: product.id }));
   const totalPrice = getTotal();
   const { token } = JSON.parse(localStorage.getItem('user'));
@@ -97,9 +107,12 @@ const getMineSales = async () => {
   return { error };
 };
 
-module.exports = { httpClient,
+module.exports = {
+  httpClient,
   registUser,
   loginUser,
   backendUrl,
   sendSale,
-  getMineSales };
+  getMineSales,
+  admingUserRegister,
+};
