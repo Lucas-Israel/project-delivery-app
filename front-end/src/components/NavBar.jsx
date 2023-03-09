@@ -8,17 +8,36 @@ import logo from '../images/logo.png';
 
 function NavBar() {
   const [name, setName] = useState('User Name');
+  const [role, setRole] = useState('customer');
+
+  const dataIds = {
+    customer: {
+      id: 'customer_products__element-navbar-link-products',
+      text: 'PRODUTOS',
+      rota: '/customer/products',
+    },
+    seller: {
+      id: 'customer_products__element-navbar-link-orders',
+      text: 'PEDIDOS',
+      rota: '/seller/orders',
+    },
+    administrator: {
+      id: 'customer_products__element-navbar-link-orders',
+      text: 'GERENCIAR USUÁRIOS',
+      rota: '/admin/manage',
+    },
+  };
 
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (!user) return;
     const stringUser = JSON.parse(user);
     setName(stringUser.name);
+    setRole(stringUser.role);
   }, []);
 
   const logout = () => {
     localStorage.removeItem('user');
-    // localStorage.removeItem('carrinho');
   };
 
   return (
@@ -28,21 +47,25 @@ function NavBar() {
       </div>
       <div className="nav-item-1">
         <Link
-          to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
+          to={ dataIds[role].rota }
+          data-testid={ dataIds[role].id }
         >
-          PRODUTOS
+          { dataIds[role].text }
         </Link>
 
       </div>
       <div className="nav-item-2">
-        <Link
-          to="/customer/orders"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          MEUS PEDIDOS
+        {
+          role === 'customer' ? (
+            <Link
+              to="/customer/orders"
+              data-testid="customer_products__element-navbar-link-orders"
+            >
+              MEUS PEDIDOS
 
-        </Link>
+            </Link>
+          ) : null
+        }
       </div>
       <div className="nav-item-3">
         <h2

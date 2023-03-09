@@ -45,10 +45,14 @@ function Login({ history }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error } = await loginUser({ email, password });
-    if (error) return setErrorText('usuario invalido');
     const { push } = history;
-    push('/customer/products');
+    const { error, user } = await loginUser({ email, password });
+    if (error) return setErrorText('usuario invalido');
+    if (user.role === 'customer') {
+      return push('/customer/products');
+    } if (user.role === 'seller') {
+      return push('/seller/orders');
+    }
   };
 
   const semConta = (e) => {

@@ -39,7 +39,7 @@ function CardOrders({ id, order, status, date, price }) {
 }
 
 CardOrders.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   order: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,

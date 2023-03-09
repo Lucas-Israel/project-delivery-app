@@ -51,6 +51,7 @@ const loginUser = async ({ email, password }) => {
     httpClient.defaults.headers.post.authorization = token;
 
     localStorage.setItem('user', JSON.stringify(saveUser));
+    return { user };
   } catch (err) {
     error = true;
   }
