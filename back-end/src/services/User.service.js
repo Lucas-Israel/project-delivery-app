@@ -41,10 +41,6 @@ class USerService extends SuperService {
   }
 }
 
-const a = new USerService();
-
-a.getAllUsers();
-
 module.exports = {
   USerService,
 };
