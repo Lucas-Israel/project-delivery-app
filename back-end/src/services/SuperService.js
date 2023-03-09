@@ -25,8 +25,8 @@ class SuperService {
     return result;
   }
 
-  async delete(id = 9999999) {
-    const result = await this.model.delete({ where: { id } });
+  async delete(email) {
+    const result = await this.model.delete({ where: { email } });
     return result;
   }
 }
