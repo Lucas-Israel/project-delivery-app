@@ -11,7 +11,6 @@ import Orders from './pages/Orders';
 import Vendor from './pages/Vendor';
 import Admin from './pages/Admin';
 
-
 function App() {
   return (
     <Provider>

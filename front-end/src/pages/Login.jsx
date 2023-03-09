@@ -16,6 +16,7 @@ function Login({ history }) {
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
   const { status } = useParams();
+
   const testToken = async () => {
     const { error } = await getMineSales();
     const { push } = history;
@@ -65,7 +66,6 @@ function Login({ history }) {
       return push('/seller/orders');
     }
     if (role === 'administrator') return push('/admin/manage');
-    push('/customer/products');
   };
 
   const semConta = (e) => {

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import CardVendor from '../components/CardVendor';
-import { httpClient, getMineSales } from '../httpClient';
+import { httpClient } from '../httpClient';
 
 httpClient.defaults.timeout = 500;
 
 function Vendor() {
   const [orders, setOrders] = useState([]);
-
+  setOrders([]);
   // useEffect(() => {
   //   const getSales = async () => {
   //     const { sales } = await getMineSales();
