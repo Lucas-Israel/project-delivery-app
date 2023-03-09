@@ -17,21 +17,20 @@ function Login({ history }) {
   const [errorText, setErrorText] = useState('');
   const { status } = useParams();
 
-  const routes = {
-    customer: '/customer/products',
-    seller: '/seller/orders',
-    administrator: '/admin/manage',
-  };
+  // const routes = {
+  //   customer: '/customer/products',
+  //   seller: '/seller/orders',
+  //   administrator: '/admin/manage',
+  // };
 
   const testToken = async () => {
     const { error } = await getMineSales();
     const { push } = history;
-    const { role } = JSON.parse(localStorage.getItem('user'));
     if (status === 'clean') {
       localStorage.removeItem('user');
       localStorage.removeItem('carrinho');
       push('/login');
-    } else if (!error) push(routes[role]);
+    } else if (!error) push('/customer/products');
   };
 
   useEffect(() => {
