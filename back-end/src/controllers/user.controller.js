@@ -55,7 +55,6 @@ class UserController {
   async deleteUser(req, res) {
     try {
       const { id } = req.params;
-      console.log('Eu sou o id do Back: ', id);
       const { payload } = await this.service.deleteUser(id);
       return res.status(204).json({ message: payload });
     } catch (error) {
