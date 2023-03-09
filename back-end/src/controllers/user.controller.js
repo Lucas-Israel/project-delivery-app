@@ -39,7 +39,7 @@ class UserController {
     }
   }
 
-  async getAllUsers(req, res) {
+  async getAllUsers(_req, res) {
     try {
       const { type, payload } = await this.service.getAllUsers();
       if (type) return res.status(getStatusCode(type)).json({ message: type, payload });
@@ -50,6 +50,8 @@ class UserController {
       });
     }
   }
+
+  async deleteUser()
 }
 
 module.exports = {
