@@ -4,35 +4,21 @@ import userEvent from '@testing-library/user-event';
 import { httpClient } from '../httpClient';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-
-const dataMessageError = 'common_register__element-invalid_register';
-const dataInputName = 'common_register__input-name';
-const dataInputEmail = 'common_register__input-email';
-const dataInputPwd = 'common_register__input-password';
-const dataFullName = 'customer_products__element-navbar-user-full-name';
-const name = 'Teste de tal';
-const email = 'teste@email.com';
-const password = '123456';
-const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGFWYWx1ZXMiOnsiaWQiOj
-ksIm5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wczI1QGhvdG1haWwuY29tIiwicGFz
-c3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGUiOiJjdXN0b21lciJ9LCJfcHJldm
-lvdXNEYXRhVmFsdWVzIjp7Im5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wczI1QGhv
-dG1haWwuY29tIiwicGFzc3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGUiOiJjdX
-N0b21lciIsImlkIjo5fSwidW5pcW5vIjoxLCJfY2hhbmdlZCI6e30sIl9vcHRpb25zIjp7ImlzTmV3UmVjb3JkIjp0
-cnVlLCJfc2NoZW1hIjpudWxsLCJfc2NoZW1hRGVsaW1pdGVyIjoiIn0sImlzTmV3UmVjb3JkIjpmYWxzZX0sImlhdC
-I6MTY3ODIyNTM0MiwiZXhwIjoxNjc4ODMwMTQyfQ.wIf9bzH0T5A-99P6PTQmDWetfSTj4QXxwJytqb8lJZU`;
-
-const saveUser = {
-  name: name,
-  email: email,
-  token: token,
-  role: 'administrator',
-}
+import { 
+  dataMessageError,
+  dataInputName,
+  dataInputEmail,
+  dataInputPwd,
+  dataFullName,
+  name,
+  email,
+  password,
+  token,
+} from './mocks/register.mock'
 
 describe('Register page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    localStorage.setItem('user', JSON.stringify(saveUser));
   });
 
   it('Check that all elements are created.', () => {
