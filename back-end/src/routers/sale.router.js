@@ -15,4 +15,6 @@ router.post(
 );
 router.get('/', tokenValidation, new SaleController().getSales);
 
+router.patch('/:id', tokenValidation, new SaleController().updateStatus);
+
 module.exports = router;
