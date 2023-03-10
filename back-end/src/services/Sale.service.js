@@ -12,7 +12,7 @@ class SaleService extends SuperService {
 
   async createSale({ userId, sellerId = 2, totalPrice, deliveryAddress,
     deliveryNumber, status = 'pendente' }) {  
-    console.log("🚀 ~ file: Sale.service.js:16 ~ SaleService ~ totalPrice:", totalPrice)
+    console.log('🚀 ~ file: Sale.service.js:16 ~ SaleService ~ totalPrice:', totalPrice);
     const result = await super.create({
       totalPrice,
       userId,
@@ -43,7 +43,7 @@ class SaleService extends SuperService {
   }
 
   async updateStatus(status, id) {
-    console.log("🚀 ~ file: Sale.service.js:46 ~ SaleService ~ updateStatus ~ status:", status)
+    console.log('🚀 ~ file: Sale.service.js:46 ~ SaleService ~ updateStatus ~ status:', status);
     const result = await super.update({ status }, { where: { id } });
     if (!result) return { type: 'NOT_FOUND', payload: result };
     return { type: null, payload: result };

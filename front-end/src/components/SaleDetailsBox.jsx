@@ -15,6 +15,11 @@ function SaleDetailsBox({ products, sale }) {
     );
     return total;
   };
+
+  const handleStatus = async (status) => {
+    const { error } = await setSaleStatus(id, status);
+    if (!error) setSTatusOrder(target.value);
+  };
   return (
     <div>
       <div>
@@ -43,6 +48,7 @@ function SaleDetailsBox({ products, sale }) {
         </h1>
         <button
           type="button"
+          onClick={ () => handleStatus('entregue') }
           data-testid="customer_order_details__button-delivery-check"
           disabled={ (sale.status !== 'chegando') }
         >
