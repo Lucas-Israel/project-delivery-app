@@ -22,9 +22,17 @@ N0b21lciIsImlkIjo5fSwidW5pcW5vIjoxLCJfY2hhbmdlZCI6e30sIl9vcHRpb25zIjp7ImlzTmV3Um
 cnVlLCJfc2NoZW1hIjpudWxsLCJfc2NoZW1hRGVsaW1pdGVyIjoiIn0sImlzTmV3UmVjb3JkIjpmYWxzZX0sImlhdC
 I6MTY3ODIyNTM0MiwiZXhwIjoxNjc4ODMwMTQyfQ.wIf9bzH0T5A-99P6PTQmDWetfSTj4QXxwJytqb8lJZU`;
 
+const saveUser = {
+  name: name,
+  email: email,
+  token: token,
+  role: 'administrator',
+}
+
 describe('Register page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    localStorage.setItem('user', JSON.stringify(saveUser));
   });
 
   it('Check that all elements are created.', () => {
@@ -44,8 +52,8 @@ describe('Register page', () => {
   });
 
   it('Check if I can register successfully.', async () => {
-    httpClient.post = jest.fn().mockResolvedValue({ data: token });
-
+    httpClient.post = jest.fn().mockResolvedValueOnce({ data: token });
+    
     const { history } = renderWithRouter(<App />, ['/register']);
 
     const inputName = screen.getByTestId(dataInputName);
@@ -64,6 +72,7 @@ describe('Register page', () => {
       expect(titleName).toBeInTheDocument();
       expect(history.location.pathname).toBe('/customer/products');
     });
+
   });
 
   it('Checks if it returns an error when registering with existing email', async () => {

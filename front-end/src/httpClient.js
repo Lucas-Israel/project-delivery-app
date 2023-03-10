@@ -34,15 +34,18 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
         name, email, password, role,
       },
     );
+    console.log('Passou: ', res);
     const saveUser = {
       name,
       email,
       token: res.data.token,
+      role,
     };
     httpClient.defaults.headers.post.authorization = saveUser.token;
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
+    console.log('Erro: ', err);
   }
   return { error };
 };

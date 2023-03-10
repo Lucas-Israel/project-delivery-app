@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { httpClient } from '../httpClient';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import resetState from './utils/resetState';
 import {
   outputAdministrator,
   outputSeller,
@@ -24,7 +23,6 @@ const testUserInvalidEmail = 'common_login__element-invalid-email';
 describe('Login page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    // resetState();
   });
 
   it(
