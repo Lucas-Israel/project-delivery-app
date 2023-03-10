@@ -25,8 +25,8 @@ class SuperService {
     return result;
   }
 
-  async delete(id = 9999999) {
-    const result = await this.model.delete({ where: { id } });
+  async delete(id) {
+    const result = await this.model.destroy({ where: { id } });
     return result;
   }
 }

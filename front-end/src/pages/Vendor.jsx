@@ -12,7 +12,6 @@ function Vendor() {
     const getSales = async () => {
       const { sales } = await getMineSales();
       setOrders(sales);
-      console.log(sales);
     };
     getSales();
   }, []);

@@ -30,7 +30,14 @@ class USerService extends SuperService {
   async getAllUsers() {
     const result = await super.findAll();
     if (!result) return { type: 'NOT_FOUND', payload: result };
-    return { type: null, payload: result };
+    const userWithoutPassword = result
+      .map(({ id, name, email, role }) => ({ id, name, email, role }));
+    return { type: null, payload: userWithoutPassword };
+  }
+
+  async deleteUser(id) {
+    await super.delete(id);
+    return { type: null, payload: 'Deletado com sucesso' };
   }
 }
 

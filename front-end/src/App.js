@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout';
 import SaleDetails from './pages/SaleDetails';
 import Orders from './pages/Orders';
 import Vendor from './pages/Vendor';
+import VendorDetails from './pages/VendorDetails';
 import Admin from './pages/Admin';
 
 function App() {
@@ -19,12 +20,12 @@ function App() {
           <Redirect to="/login" />
         </Route>
         <Route exact path="/login/" component={ Login } />
-        {/* <Route exact path="/login/:status" component={ Login } /> */}
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/products" component={ Products } />
         <Route exact path="/customer/checkout" component={ Checkout } />
         <Route exact path="/customer/orders/:id" component={ SaleDetails } />
         <Route exact path="/seller/orders" component={ Vendor } />
+        <Route exact path="/seller/orders/:id" component={ VendorDetails } />
         <Route exact path="/admin/manage" component={ Admin } />
         <Route exact path="/customer/orders" component={ Orders } />
         <Route exact path="*" component={ NotFound } />
