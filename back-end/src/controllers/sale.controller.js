@@ -9,6 +9,7 @@ class SaleController {
     this.SaleProductService = new SaleProduct();
     this.createSale = this.createSale.bind(this);
     this.getSales = this.getSales.bind(this);
+    this.updateStatus = this.updateStatus.bind(this);
   }
 
   async createSale(req, res) {
@@ -40,6 +41,21 @@ class SaleController {
     } catch (erro) {
       return res.status(500).json({
         message: 'Erro ao listar as vendas do banco',
+        error: erro.message,
+      });
+    }
+  }
+
+  async updateStatus(req, res) {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      const { type, payload } = await this.SaleService.updateStatus(status, id);
+      if (type) return res.status(getStatusCode(type)).json({ payload });
+      return res.status(200).json(payload);
+    } catch (erro) {
+      return res.status(500).json({
+        message: 'Erro ao editar status no banco',
         error: erro.message,
       });
     }

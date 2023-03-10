@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import { getMineSales } from '../httpClient';
+import { getMineSales, setSaleStatus } from '../httpClient';
 
 function VendorDetails() {
   const { id } = useParams();
@@ -19,7 +19,7 @@ function VendorDetails() {
       console.log(resultSale);
     };
     getProducts();
-  }, [id]);
+  }, [id, statusOrder]);
 
   useEffect(() => {
     const total = products.reduce((acm, cur) => (
@@ -28,9 +28,10 @@ function VendorDetails() {
     setTotalPrice(total);
   }, [products]);
 
-  const handleStatus = ({ target }) => {
-    console.log(target.value);
-    setSTatusOrder('Pendente');
+  const handleStatus = async ({ target }) => {
+    const status = target.value;
+    const { error } = await setSaleStatus(id, status);
+    if (!error) setSTatusOrder(target.value);
   };
 
   return (
@@ -59,7 +60,7 @@ function VendorDetails() {
           value="Preparando"
           data-testid="seller_order_details__button-preparing-check"
           onClick={ handleStatus }
-          disabled={ statusOrder !== 'Pendente' }
+          disabled={ statusOrder !== 'Preparando' || statusOrder !== 'Em Trânsito' }
         >
           PREPARAR PEDIDO
         </button>
@@ -68,7 +69,7 @@ function VendorDetails() {
           value="Em Trânsito"
           data-testid="seller_order_details__button-dispatch-check"
           onClick={ handleStatus }
-          disabled={ statusOrder !== 'Preparando' }
+          disabled={ statusOrder !== 'Pendente' || statusOrder !== 'Em Trânsito' }
         >
           SAIU PARA ENTREGA
         </button>

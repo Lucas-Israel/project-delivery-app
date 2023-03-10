@@ -108,6 +108,18 @@ const getMineSales = async () => {
   return { error };
 };
 
+const setSaleStatus = async (saleId, status) => {
+  let error = false;
+  try {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    httpClient.defaults.headers.patch.authorization = token;
+    await httpClient.patch(backendUrl(`sales/${saleId}`), { status });
+  } catch (err) {
+    error = true;
+  }
+  return { error };
+};
+
 module.exports = {
   httpClient,
   registUser,
@@ -116,4 +128,5 @@ module.exports = {
   sendSale,
   getMineSales,
   admingUserRegister,
+  setSaleStatus,
 };
