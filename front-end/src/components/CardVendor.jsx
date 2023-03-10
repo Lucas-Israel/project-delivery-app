@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function CardVendor({ id, status, date, price, address }) {
   return (
-    <Link to={ `/customer/orders/${id}` }>
+    <Link to={ `/seller/orders/${id}` }>
       <div>
         <p>Pedido</p>
         <p

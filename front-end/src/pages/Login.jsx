@@ -15,7 +15,6 @@ function Login({ history }) {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
-  const { status } = useParams();
 
   const routes = {
     customer: '/customer/products',
@@ -23,15 +22,11 @@ function Login({ history }) {
     administrator: '/admin/manage',
   };
 
-  const testToken = async () => {
-    const { error } = await getMineSales();
+  const testToken = () => {
     const { push } = history;
-    const { role } = JSON.parse(localStorage.getItem('user'));
-    if (status === 'clean') {
-      localStorage.removeItem('user');
-      localStorage.removeItem('carrinho');
-      push('/login');
-    } else if (!error) push(routes[role]);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) return null;
+    push(routes[user.role]);
   };
 
   useEffect(() => {
