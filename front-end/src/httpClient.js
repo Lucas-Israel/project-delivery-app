@@ -104,6 +104,7 @@ const getMineSales = async () => {
     return { sales, error };
   } catch (err) {
     error = true;
+    console.log('Não passei: ', err.message);
   }
   return { error };
 };
