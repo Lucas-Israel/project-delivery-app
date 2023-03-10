@@ -1,11 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import {
-  useParams,
-} from 'react-router-dom';
 import { FaGoogle, FaApple } from 'react-icons/fa';
 
-import { loginUser, getMineSales } from '../httpClient';
+import { loginUser } from '../httpClient';
 import logo from '../images/logo.png';
 import bg from '../images/background.webp';
 
@@ -15,7 +12,6 @@ function Login({ history }) {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [errorText, setErrorText] = useState('');
-  const { status } = useParams();
 
   const routes = {
     customer: '/customer/products',
@@ -23,15 +19,11 @@ function Login({ history }) {
     administrator: '/admin/manage',
   };
 
-  const testToken = async () => {
-    const { error } = await getMineSales();
+  const testToken = () => {
     const { push } = history;
-    const { role } = JSON.parse(localStorage.getItem('user'));
-    if (status === 'clean') {
-      localStorage.removeItem('user');
-      localStorage.removeItem('carrinho');
-      push('/login');
-    } else if (!error) push(routes[role]);
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) return null;
+    push(routes[user.role]);
   };
 
   useEffect(() => {
@@ -65,13 +57,10 @@ function Login({ history }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { push } = history;
-    const { error, user, role } = await loginUser({ email, password });
+    const { error, role } = await loginUser({ email, password });
     if (error) return setErrorText('usuario invalido');
-    if (user.role === 'customer') {
-      return push('/customer/products');
-    } if (user.role === 'seller') {
-      return push('/seller/orders');
-    }
+    if (role === 'customer') return push('/customer/products');
+    if (role === 'seller') return push('/seller/orders');
     if (role === 'administrator') return push('/admin/manage');
   };
 

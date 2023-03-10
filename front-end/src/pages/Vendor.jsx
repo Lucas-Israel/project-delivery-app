@@ -28,7 +28,7 @@ function Vendor() {
             date={ (order.saleDate.split('T')[0]).replaceAll('-', '/')
               .split('/').reverse().join('/') }
             price={ order.totalPrice }
-            address={ order.deliveryAddress }
+            address={ `${order.deliveryAddress}, ${order.deliveryNumber}` }
             index={ index }
           />
         ))

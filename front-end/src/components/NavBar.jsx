@@ -38,6 +38,7 @@ function NavBar() {
 
   const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
   };
 
   return (
@@ -78,7 +79,7 @@ function NavBar() {
       <div className="nav-item-4">
         <Link
           onClick={ logout }
-          to="/login/clean"
+          to="/login"
           data-testid="customer_products__element-navbar-link-logout"
         >
           <FiLogOut className="ico-logout" />
