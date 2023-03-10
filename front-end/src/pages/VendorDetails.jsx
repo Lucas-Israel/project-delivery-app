@@ -60,7 +60,7 @@ function VendorDetails() {
           value="Preparando"
           data-testid="seller_order_details__button-preparing-check"
           onClick={ handleStatus }
-          disabled={ statusOrder !== 'Pendente' }
+          disabled={ statusOrder !== 'Preparando' || statusOrder !== 'Em Trânsito' }
         >
           PREPARAR PEDIDO
         </button>
@@ -69,7 +69,7 @@ function VendorDetails() {
           value="Em Trânsito"
           data-testid="seller_order_details__button-dispatch-check"
           onClick={ handleStatus }
-          disabled={ statusOrder !== 'Preparando' }
+          disabled={ statusOrder !== 'Pendente' || statusOrder !== 'Em Trânsito' }
         >
           SAIU PARA ENTREGA
         </button>
