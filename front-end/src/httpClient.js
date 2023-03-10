@@ -50,6 +50,8 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
 const loginUser = async ({ email, password }) => {
   let error = false;
   let role;
+  localStorage.removeItem('user');
+  localStorage.removeItem('carrinho');
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
     const { token, user } = res.data;
@@ -62,9 +64,7 @@ const loginUser = async ({ email, password }) => {
     };
     httpClient.defaults.headers.post.authorization = token;
     role = user.role;
-
     localStorage.setItem('user', JSON.stringify(saveUser));
-    return { user };
   } catch (err) {
     error = true;
   }
