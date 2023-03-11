@@ -34,7 +34,6 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
         name, email, password, role,
       },
     );
-    console.log('Passou: ', res);
     const saveUser = {
       name,
       email,
@@ -45,7 +44,6 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
     error = true;
-    console.log('Erro: ', err);
   }
   return { error };
 };
@@ -103,12 +101,10 @@ const getMineSales = async () => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     httpClient.defaults.headers.get.authorization = token;
     const res = await httpClient.get(backendUrl('sales'));
-    console.log('Eu sou sales: ', res);
     const sales = res.data;
     return { sales, error };
   } catch (err) {
     error = true;
-    console.log('Não passei: ', err.message);
   }
   return { error };
 };
