@@ -42,5 +42,3 @@ export const carrinhoObj = [
     quantity: 6,
   },
 ];
-
-export const a = 1;

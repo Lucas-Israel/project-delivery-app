@@ -1,5 +1,6 @@
 const getCartProducts = () => {
   const StorageCart = JSON.parse(localStorage.getItem('carrinho'));
+  console.log('🚀 ~ file: helpers.js:3 ~ getCartProducts ~ StorageCart:', StorageCart);
   return StorageCart;
 };
 
