@@ -16,7 +16,7 @@ function VendorDetails() {
       const resultSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(resultSale);
       setProducts(resultSale.SalesProducts);
-      console.log(resultSale);
+      setSTatusOrder(resultSale.status);
     };
     getProducts();
   }, [id, statusOrder]);
@@ -39,6 +39,7 @@ function VendorDetails() {
     date: 'seller_order_details__element-order-details-label-order-date',
     statusId: 'seller_order_details__element-order-details-label-delivery-status',
     prepara: 'seller_order_details__button-preparing-check',
+    envia: 'seller_order_details__button-dispatch-check',
     prodId: (i) => `seller_order_details__element-order-table-item-number-${i}`,
     prodName: (i) => `seller_order_details__element-order-table-name-${i}`,
     prodQuant: (i) => `seller_order_details__element-order-table-quantity-${i}`,
@@ -53,7 +54,7 @@ function VendorDetails() {
         <p>Detalhes do Pedido</p>
         <div className="details-order">
           <span
-            data-testid={ dataIds[id] }
+            data-testid={ dataIds.id }
           >
             { `PEDIDO ${id}` }
           </span>
@@ -86,7 +87,7 @@ function VendorDetails() {
             type="button"
             className="saiu"
             value="Em Trânsito"
-            data-testid="seller_order_details__button-dispatch-check"
+            data-testid={ dataIds.envia }
             onClick={ handleStatus }
             style={
               statusOrder !== 'Preparando'
@@ -101,39 +102,39 @@ function VendorDetails() {
           products.map((prod, index) => (
             <div
               className="list-item"
-              key={ `prodSeller${prod.Product.id}` }
+              key={ `prodSeller${index}` }
             >
               <div
                 className="item-1"
-                data-testid={ dataIds.prodId(prod.Product.id) }
+                data-testid={ dataIds.prodId(index) }
               >
                 { index + 1 }
 
               </div>
               <div
                 className="item-2"
-                data-testid={ dataIds.prodName(prod.Product.id) }
+                data-testid={ dataIds.prodName(index) }
               >
                 { prod.Product.name }
 
               </div>
               <div
                 className="item-3"
-                data-testid={ dataIds.prodQuant(prod.Product.id) }
+                data-testid={ dataIds.prodQuant(index) }
               >
                 { prod.quantity }
 
               </div>
               <div
                 className="item-4"
-                data-testid={ dataIds.prodUnitPrice(prod.Product.id) }
+                data-testid={ dataIds.prodUnitPrice(index) }
               >
                 { prod.Product.price.replace('.', ',') }
 
               </div>
               <div
                 className="item-5"
-                data-testid={ dataIds.prodPrice(prod.Product.id) }
+                data-testid={ dataIds.prodPrice(index) }
               >
                 {
                   (Number(prod.Product.price) * Number(prod.quantity)).toFixed(2)

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ProductsOrderDetails from './ProductOrderDetails';
+import { setSaleStatus } from '../httpClient';
 
 const statusTestID = [
   'customer_order_details__element-order-details-label-delivery-status'];
 function SaleDetailsBox({ products, sale }) {
+  const { id } = useParams();
+  const [statusOrder, setSTatusOrder] = useState('Pendente');
   const getTotal = (saleProducts) => {
     const total = saleProducts.reduce(
       (
@@ -15,11 +19,18 @@ function SaleDetailsBox({ products, sale }) {
     );
     return total;
   };
+  useEffect(() => {
+    setSTatusOrder(sale.status);
+  }, [sale]);
 
-  const handleStatus = async (status) => {
+  const handleStatus = async ({ target }) => {
+    const status = target.value;
     const { error } = await setSaleStatus(id, status);
-    if (!error) setSTatusOrder(target.value);
+    if (!error) {
+      setSTatusOrder(target.value);
+    }
   };
+
   return (
     <div className="sale-details-container">
       <div className="sale-title-list">
@@ -47,14 +58,16 @@ function SaleDetailsBox({ products, sale }) {
           className="title-4"
           data-testid={ `${statusTestID[0]}${sale.id}` }
         >
-          {(sale.status || 'pendente').toUpperCase()}
+          { statusOrder }
 
         </h1>
         <button
           type="button"
-          onClick={ () => handleStatus('entregue') }
+          value="Entregue"
+          onClick={ handleStatus }
           data-testid="customer_order_details__button-delivery-check"
-          disabled={ (sale.status !== 'chegando') }
+          disabled={ (statusOrder !== 'Em Trânsito') }
+          style={ (statusOrder !== 'Em Trânsito') ? { opacity: '0.1' } : {} }
         >
           MARCAR COMO ENTREGUE
         </button>

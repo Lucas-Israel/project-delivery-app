@@ -39,7 +39,7 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
       email,
       role,
       token: res.data.token,
-    }; //eslint-disable-line
+    };
     httpClient.defaults.headers.post.authorization = saveUser.token;
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
