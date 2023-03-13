@@ -13,4 +13,34 @@ export const allProduct = [
   },
 ];
 
+export const carrinhoObj = [
+  {
+    id: 11,
+    title: 'Stella Artois 275ml',
+    price: 3.49,
+    quantity: 18,
+  },
+  {
+    id: 1,
+    title: 'Skol Lata 250ml',
+    price: 2.20,
+    quantity: 4,
+  },
+  {
+    id: 4,
+    title: 'Brahma 600ml',
+    price: 7.50,
+    quantity: 4,
+  },
+  { id: 2,
+    title: 'Heineken 600ml',
+    price: 7.50,
+    quantity: 17 },
+  { id: 10,
+    title: 'Skol Beats Senses 269ml',
+    price: 3.57,
+    quantity: 6,
+  },
+];
+
 export const a = 1;
