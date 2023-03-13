@@ -34,14 +34,14 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
         name, email, password, role,
       },
     );
-    const saveUser = {
+    const saveUserR = {
       name,
       email,
       role,
       token: res.data.token,
     };
     httpClient.defaults.headers.post.authorization = saveUser.token;
-    localStorage.setItem('user', JSON.stringify(saveUser));
+    localStorage.setItem('user', JSON.stringify(saveUserR));
   } catch (err) {
     error = true;
   }
@@ -56,7 +56,7 @@ const loginUser = async ({ email, password }) => {
   try {
     const res = await httpClient.post(backendUrl('login'), { email, password });
     const { token, user } = res.data;
-    const saveUser = {
+    const saveUserL = {
       name: user.name,
       email: user.email,
       role: user.role,
@@ -64,7 +64,7 @@ const loginUser = async ({ email, password }) => {
     };
     httpClient.defaults.headers.post.authorization = token;
     role = user.role;
-    localStorage.setItem('user', JSON.stringify(saveUser));
+    localStorage.setItem('user', JSON.stringify(saveUserL));
   } catch (err) {
     error = true;
   }
