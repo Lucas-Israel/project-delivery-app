@@ -8,13 +8,6 @@ function Admin() {
   const [userList, setUserList] = useState([]);
   const [erro, setErro] = useState('');
 
-  const newFetch = async () => {
-    await httpClient.get(backendUrl('admin/manager'))
-      .then((res) => {
-        setUserList(res.data);
-      });
-  };
-
   const adminRegisterUser = async ({ name, email, password, role }) => {
     const { error } = await admingUserRegister({ name, email, password, role });
     if (error) setErro('Usuário ja existe');
@@ -23,7 +16,13 @@ function Admin() {
   };
 
   useEffect(() => {
-    newFetch();
+    const controller = new AbortController();
+    httpClient.get(backendUrl('admin/manager'), { signal: controller.signal })
+      .then((res) => {
+        setUserList(res.data);
+      })
+      .catch(() => controller.signal.aborted);
+    return () => controller.abort();
   }, []);
 
   const handleDeleteUser = (id) => {
