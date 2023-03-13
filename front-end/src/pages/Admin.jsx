@@ -8,36 +8,36 @@ function Admin() {
   const [userList, setUserList] = useState([]);
   const [erro, setErro] = useState('');
 
-  const newFetch = async () => {
-    await httpClient.get(backendUrl('admin/manager'))
+  const newFetch = async (option) => {
+    await httpClient.get(backendUrl('admin/manager'), { signal: option.signal })
       .then((res) => {
         setUserList(res.data);
-      });
+      })
+      .catch(() => option.signal.aborted);
   };
 
   const adminRegisterUser = async ({ name, email, password, role }) => {
+    const controller = new AbortController();
     const { error } = await admingUserRegister({ name, email, password, role });
     if (error) setErro('Usuário ja existe');
-    newFetch();
+    newFetch(controller);
     return error;
   };
 
   useEffect(() => {
-    newFetch();
+    const controller = new AbortController();
+    newFetch(controller);
+    return () => controller.abort();
   }, []);
 
   const handleDeleteUser = (id) => {
-    try {
-      httpClient.delete(backendUrl(`admin/manager/${id}`))
-        .then(() => {
-          const newList = userList.filter((user) => user.id !== id);
-          setUserList(newList);
-        });
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      httpClient.defaults.headers.post.authorization = token;
-    } catch (e) {
-      return e.message;
-    }
+    httpClient.delete(backendUrl(`admin/manager/${id}`))
+      .then(() => {
+        const newList = userList.filter((user) => user.id !== id);
+        setUserList(newList);
+      });
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    httpClient.defaults.headers.post.authorization = token;
   };
 
   return (
