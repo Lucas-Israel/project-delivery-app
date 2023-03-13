@@ -16,7 +16,6 @@ function VendorDetails() {
       const resultSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(resultSale);
       setProducts(resultSale.SalesProducts);
-      console.log(resultSale);
     };
     getProducts();
   }, [id, statusOrder]);

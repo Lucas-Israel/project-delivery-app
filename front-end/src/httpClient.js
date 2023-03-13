@@ -39,7 +39,7 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
       email,
       role,
       token: res.data.token,
-    }; //eslint-disable-line
+    };
     httpClient.defaults.headers.post.authorization = saveUser.token;
     localStorage.setItem('user', JSON.stringify(saveUser));
   } catch (err) {
@@ -100,9 +100,11 @@ const getMineSales = async () => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     httpClient.defaults.headers.get.authorization = token;
     const res = await httpClient.get(backendUrl('sales'));
+    console.log('Passei: ', res);
     const sales = res.data;
     return { sales, error };
   } catch (err) {
+    console.log('Não passei: ', err.message);
     error = true;
   }
   return { error };

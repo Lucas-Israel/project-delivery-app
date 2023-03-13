@@ -1,0 +1,17 @@
+export const dataMessageError = 'common_register__element-invalid_register';
+export const dataInputName = 'common_register__input-name';
+export const dataInputEmail = 'common_register__input-email';
+export const dataInputPwd = 'common_register__input-password';
+export const dataFullName = 'customer_products__element-navbar-user-full-name';
+export const name = 'Teste de tal';
+export const email = 'teste@email.com';
+export const password = '123456';
+export const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGFWYWx1ZXMiOns
+iaWQiOjksIm5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wczI1QGhvdG1haWwuY29tI
+iwicGFzc3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGUiOiJjdXN0b21lciJ9LCJ
+fcHJldmlvdXNEYXRhVmFsdWVzIjp7Im5hbWUiOiJEZWxpdmVyeSBBcHAgQWRtaW4iLCJlbWFpbCI6Imx1ZHNvbl9wc
+zI1QGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJmY2VhOTIwZjc0MTJiNWRhN2JlMGNmNDJiOGM5Mzc1OSIsInJvbGU
+iOiJjdXN0b21lciIsImlkIjo5fSwidW5pcW5vIjoxLCJfY2hhbmdlZCI6e30sIl9vcHRpb25zIjp7ImlzTmV3UmVjb
+3JkIjp0cnVlLCJfc2NoZW1hIjpudWxsLCJfc2NoZW1hRGVsaW1pdGVyIjoiIn0sImlzTmV3UmVjb3JkIjpmYWxzZX0
+sImlhdCI6MTY3ODIyNTM0MiwiZXhwIjoxNjc4ODMwMTQyfQ.wIf9bzH0T5A-99P6PTQmDWetfSTj4QXxwJytqb8lJZ
+U`;
