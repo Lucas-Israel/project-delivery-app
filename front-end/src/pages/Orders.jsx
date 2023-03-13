@@ -17,9 +17,9 @@ function Orders() {
   }, []);
 
   return (
-    <div>
+    <div className="orders">
       <NavBar />
-      <div>
+      <div className="container-orders">
         {
           orders.map((order, index) => (
             <CardOrders

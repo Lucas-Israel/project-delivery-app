@@ -17,7 +17,7 @@ function Vendor() {
   }, []);
 
   return (
-    <div>
+    <div className="vendor">
       <NavBar />
       {
         orders.map((order, index) => (

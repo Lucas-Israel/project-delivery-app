@@ -37,8 +37,8 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
     const saveUser = {
       name,
       email,
-      token: res.data.token,
       role,
+      token: res.data.token,
     };
     httpClient.defaults.headers.post.authorization = saveUser.token;
     localStorage.setItem('user', JSON.stringify(saveUser));
@@ -57,7 +57,6 @@ const loginUser = async ({ email, password }) => {
     const res = await httpClient.post(backendUrl('login'), { email, password });
     const { token, user } = res.data;
     const saveUser = {
-      id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,

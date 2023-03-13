@@ -33,8 +33,41 @@ $cor-verde-escuro: #036B52;
 $cor-verde: #4CAF50;
 $cor-verde-active: #56ca59;
 $cor-cinza: #e9e7e7;
-$cor-text-dark: #001813;
-$cor-text-light: #F2FFFC;
+$cor-text-1: #001813;
+$cor-text-2: #F2FFFC;
+
+@mixin dark-mode {
+  background-color: #001813 !important;
+
+  .login-logo, .nav-item-logo {
+    filter: brightness(200%) invert(100%);
+    border: #001813;
+  }
+  .card-product {
+    opacity: 0.8;
+    .card-price {
+      color: #421981;
+    }
+    .card-quantity {
+      background-color: #b38705 !important;
+      .bttns-container {
+        input {
+          background-color: #001813;
+          border: #001813;
+          color: #F2FFFC;
+        }
+      }
+    }
+  }
+  .navbar {
+    .nav-item-3 {
+      background-color: #001813;
+      h2 {
+        color: #F2FFFC;
+      }
+    }
+  }
+}
 
 // Animations
 @keyframes horizontal-shaking {
@@ -43,4 +76,13 @@ $cor-text-light: #F2FFFC;
   50% { transform: translateX(-5px) }
   75% { transform: translateX(5px) }
   100% { transform: translateX(0) }
+}
+
+@keyframes vertical-pull {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
 }

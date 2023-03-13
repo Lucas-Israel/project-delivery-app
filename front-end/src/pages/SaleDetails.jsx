@@ -5,6 +5,7 @@ import {
 import NavBar from '../components/NavBar';
 import SaleDetailsBox from '../components/SaleDetailsBox';
 import { getMineSales } from '../httpClient';
+import bg from '../images/background.png';
 
 function SaleDetails() {
   const [products, setProducts] = useState([]);
@@ -28,7 +29,15 @@ function SaleDetails() {
   }, [id]);
 
   return (
-    <div className="sale-details">
+    <div
+      className="sale-details"
+      style={ {
+        background: `url(${bg})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      } }
+    >
       <h1>Detalhe do pedido</h1>
       <NavBar />
       <SaleDetailsBox

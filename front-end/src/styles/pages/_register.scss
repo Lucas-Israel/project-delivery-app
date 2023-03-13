@@ -1,6 +1,9 @@
 @import '../abstract/variaveis';
 
 .register {
+  &.dark-mode {
+    @include dark-mode();
+  }
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -39,7 +42,7 @@
         width: 100%;
         font-size: $tamanho-do-texto / 3;
         padding: 8px 16px;
-        border: solid 1px $cor-text-light;
+        border: solid 1px $cor-text-2;
         border-radius: 4px;
         outline: none;
         &:focus, &:hover {
@@ -93,7 +96,7 @@
       width: 100%;
       text-align: center;
       font-size: $tamanho-do-texto / 4;
-      color: $cor-text-dark;
+      color: $cor-text-1;
       opacity: 0.5;
       position: absolute;
       top: 110%;
