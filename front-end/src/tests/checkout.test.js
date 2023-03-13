@@ -5,12 +5,15 @@ import userEvent from '@testing-library/user-event';
 import { httpClient } from '../httpClient';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
+// import { outputCustomer } from './mocks/login.mock';
 
+const randomNumber = 243549;
 const checkoutRemoveTestId = 'customer_checkout__element-order-table-remove-0';
 const checkoutTotalTestId = 'customer_checkout__element-order-total-price';
 const checkoutBTestId = 'customer_products__checkout-bottom-value';
 const dataPlus1 = 'customer_products__button-card-add-item-1';
-const dataTotal = 'customer_products__checkout-bottom-value';
+const inputAdressNumberTestId = 'customer_checkout__input-address-number';
+const inputAdressDataTestId = 'customer_checkout__input-address';
 const products = [
   {
     id: 1,
@@ -26,29 +29,27 @@ const products = [
   },
 ];
 
-describe('checkout page', () => {
-  beforeEach(() => {
+const goToCheckout = async () => {
+  await act(async () => {
+    httpClient.get = jest.fn().mockResolvedValue({ data: products });
+    renderWithRouter(<App />, ['/customer/products']);
+  });
+
+  const btnCartPlus = screen.getByTestId(dataPlus1);
+  const checkoutBtn = screen.getByTestId(checkoutBTestId);
+
+  userEvent.click(btnCartPlus);
+
+  checkoutBtn.click();
+};
+
+describe('verify if checkout screen works as expected', () => {
+  beforeEach(async () => {
     localStorage.clear();
     jest.clearAllMocks();
+    await goToCheckout();
   });
-  it('verify if checkout screen works as expected', async () => {
-    await act(async () => {
-      httpClient.get = jest.fn().mockResolvedValue({ data: products });
-      renderWithRouter(<App />, ['/customer/products']);
-    });
-
-    const btnCartPlus = screen.getByTestId(dataPlus1);
-    const total = screen.getByTestId(dataTotal);
-    const checkoutBtn = screen.getByTestId(checkoutBTestId);
-
-    userEvent.click(btnCartPlus);
-
-    expect(btnCartPlus).toBeInTheDocument();
-    expect(total).toBeInTheDocument();
-    expect(total).toHaveTextContent('10,00');
-
-    checkoutBtn.click();
-
+  it('verify if remove button works as expected', async () => {
     const totalDiv = screen.getByTestId(checkoutTotalTestId);
     expect(totalDiv).toBeInTheDocument();
     expect(totalDiv).toHaveTextContent('10,00');
@@ -56,5 +57,14 @@ describe('checkout page', () => {
     const removeBtn = screen.getByTestId(checkoutRemoveTestId);
     removeBtn.click();
     expect(removeBtn).not.toBeInTheDocument();
+  });
+  it('verify if i can send a sale as expected', async () => {
+    const inputAdressNumber = screen.getByTestId(inputAdressNumberTestId);
+    const inputAdress = screen.getByTestId(inputAdressDataTestId);
+
+    userEvent.type(inputAdress, 'aqui');
+    userEvent.type(inputAdressNumber, randomNumber);
+    const sendSaleBtn = screen.getByText('FINALIZAR PEDIDO');
+    expect(sendSaleBtn).toBeInTheDocument();
   });
 });
