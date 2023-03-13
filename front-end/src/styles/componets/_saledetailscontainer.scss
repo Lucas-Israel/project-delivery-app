@@ -1,0 +1,57 @@
+@import '../abstract/variaveis';
+
+.sale-details-container {
+  padding: 80px 5vw;
+  min-height: 100vh;
+  .sale-title-list {
+    display: flex;
+    font-family: $font;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: $cor-text-2;
+    border-radius: 5px;
+    .title-1 {
+      font-weight: $b;
+    }
+    .title-3 {
+      padding: 5px 10px;
+      background-color: white;
+      border-radius: 5px;
+    }
+    .title-4 {
+      padding: 5px 10px;
+      background-color: $cor-verde-escuro;
+      color: $cor-text-2;
+      font-weight: $b;
+      border-radius: 5px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: $cor-verde;
+      cursor: pointer;
+      border: none;
+      color: $cor-text-2;
+      font-weight: $b;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+      &:hover {
+        background-color: $cor-verde-active;
+      }
+    }
+  }
+  .total-check-container {
+    .total-checkout {
+      font-family: $font;
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      font-weight: $b;
+      border-radius: 5px;
+      padding: 8px 16px;
+      background-color: $cor-verde-escuro;
+      color: $cor-text-2;
+
+    }
+  }
+}

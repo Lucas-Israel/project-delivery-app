@@ -37,6 +37,7 @@ const registUser = async ({ name, email, password, role = 'customer' }) => {
     const saveUser = {
       name,
       email,
+      role,
       token: res.data.token,
     };
     httpClient.defaults.headers.post.authorization = saveUser.token;
@@ -56,7 +57,6 @@ const loginUser = async ({ email, password }) => {
     const res = await httpClient.post(backendUrl('login'), { email, password });
     const { token, user } = res.data;
     const saveUser = {
-      id: user.id,
       name: user.name,
       email: user.email,
       role: user.role,

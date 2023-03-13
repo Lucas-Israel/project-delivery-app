@@ -46,6 +46,7 @@ function Provider({ children }) {
     totalValue,
     updateCart,
     setAllProducts,
+    setShoppingCart,
   }), [totalValue, updateCart]);
 
   return (

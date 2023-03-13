@@ -21,19 +21,22 @@ function SaleDetailsBox({ products, sale }) {
     if (!error) setSTatusOrder(target.value);
   };
   return (
-    <div>
-      <div>
-        <h1 data-testid="customer_order_details__element-order-details-label-order-id">
+    <div className="sale-details-container">
+      <div className="sale-title-list">
+        <h1
+          className="title-1"
+          data-testid="customer_order_details__element-order-details-label-order-id"
+        >
           PEDIDO
           {' '}
           {sale.id || 0}
-          ;
         </h1>
         <h1 data-testid="customer_order_details__element-order-details-label-seller-name">
           P. Vend: Fulana Pereira
 
         </h1>
         <h1
+          className="title-3"
           data-testid="customer_order_details__element-order-details-label-order-date"
         >
           {(((sale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')
@@ -41,9 +44,10 @@ function SaleDetailsBox({ products, sale }) {
 
         </h1>
         <h1
+          className="title-4"
           data-testid={ `${statusTestID[0]}${sale.id}` }
         >
-          {sale.status || 'pendente'}
+          {(sale.status || 'pendente').toUpperCase()}
 
         </h1>
         <button
@@ -52,7 +56,7 @@ function SaleDetailsBox({ products, sale }) {
           data-testid="customer_order_details__button-delivery-check"
           disabled={ (sale.status !== 'chegando') }
         >
-          marcar como entregue
+          MARCAR COMO ENTREGUE
         </button>
       </div>
       <div>
