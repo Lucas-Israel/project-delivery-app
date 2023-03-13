@@ -97,7 +97,7 @@ describe('Admin tests', () => {
     expect(adminElement).toBeInTheDocument();
   })
 
-  it('02 - The admin can see all Users', async () => {
+  it('02 - The admin can see all users', async () => {
     httpClient.get = jest.fn().mockResolvedValue({data: allUsers});
 
     renderWithRouter(<App />, ['/admin/manage'])
@@ -113,7 +113,7 @@ describe('Admin tests', () => {
     expect(user4.innerHTML).toBe('BBB@CCC.DDD');
   })
 
-  it('03 - The admin can create an User', async () => {
+  it('03 - The admin can create an user', async () => {
     httpClient.get = jest.fn().mockResolvedValueOnce({data: allUsers});
 
     renderWithRouter(<App />, ['/admin/manage']);
@@ -137,7 +137,7 @@ describe('Admin tests', () => {
     expect(fifthElementUserTable.innerHTML).toBe(userAdded[4].email);
   })
 
-  it('04 - The admin can delete an User', async () => {
+  it('04 - The admin can delete an user', async () => {
     httpClient.get = jest.fn().mockResolvedValueOnce({data: userAdded});
 
     renderWithRouter(<App />, ['/admin/manage']);
@@ -161,7 +161,7 @@ describe('Admin tests', () => {
     expect(fifthElementUserTable).not.toBeInTheDocument();
   })
 
-  it('05 - Testing an error when trying to add another user', async () => {
+  it('05 - Testing an error when trying to add an existing user', async () => {
     httpClient.get = jest.fn().mockResolvedValueOnce({data: allUsers});
     
     renderWithRouter(<App />, ['/admin/manage']);
