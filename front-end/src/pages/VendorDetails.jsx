@@ -16,7 +16,10 @@ function VendorDetails() {
       const resultSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(resultSale);
       setProducts(resultSale.SalesProducts);
+<<<<<<< HEAD
       setSTatusOrder(resultSale.status);
+=======
+>>>>>>> 854b6e58cbb2ebb915be18ddf0deeba26c20668a
     };
     getProducts();
   }, [id, statusOrder]);
