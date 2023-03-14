@@ -4,6 +4,8 @@ import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import { httpClient } from '../httpClient';
 import App from '../App';
+
+import { saveCustomer } from './mocks/orders.mock';
 import renderWithRouter from '../renderWithRouter';
 // import { outputCustomer } from './mocks/login.mock';
 
@@ -45,7 +47,7 @@ const goToCheckout = async () => {
 
 describe('verify if checkout screen works as expected', () => {
   beforeEach(async () => {
-    localStorage.clear();
+    localStorage.setItem('user', JSON.stringify(saveCustomer));
     jest.clearAllMocks();
     await goToCheckout();
   });
@@ -66,5 +68,6 @@ describe('verify if checkout screen works as expected', () => {
     userEvent.type(inputAdressNumber, randomNumber);
     const sendSaleBtn = screen.getByText('FINALIZAR PEDIDO');
     expect(sendSaleBtn).toBeInTheDocument();
+    sendSaleBtn.click();
   });
 });
