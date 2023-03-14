@@ -27,14 +27,16 @@ class ValidatingBody {
 
     if (!Array.isArray(arrayCheck)) {
       message = 'Body needs the products key to be an array'; 
-      return;
+    
+      return { message };
     }
 
     const isobj = arrayCheck.some((item) => Object.keys(item).length > 0);
 
     if (!isobj) {
       message = 'Values inside array needs to be an object';
-      return;
+
+    return { message };
     }
 
     return { message };

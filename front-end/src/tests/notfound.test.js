@@ -4,12 +4,11 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('NotFound page', () => {
-
   it('Verificar', async () => {
-      renderWithRouter(<App />, ['/rotaerrada']);
+    renderWithRouter(<App />, ['/rotaerrada']);
 
-      const notFountTitle = screen.getByText('Not Found');
+    const notFountTitle = screen.getByText('Not Found');
 
-      expect(notFountTitle).toBeInTheDocument();
-    });
+    expect(notFountTitle).toBeInTheDocument();
+  });
 });

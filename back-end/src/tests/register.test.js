@@ -52,7 +52,7 @@ describe('Testing endpoint "/register"', () => {
     it('if the email already exists', async () => {
       sinon
         .stub(User, "findOne")
-        .resolves(token);
+        .resolves(token); // esse ta dando problema
 
       const response = await chai
         .request(app)

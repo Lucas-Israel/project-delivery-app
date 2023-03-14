@@ -7,6 +7,12 @@ const validInput = {
   role: "customer"
 }
 
+const validFinded = {
+  ...validInput,
+  password: undefined,
+  token
+}
+
 const validInputOutRole = {
   name:"Delivery App Admin",
   email: "ludson_ps28@hotmail.com",
@@ -43,4 +49,5 @@ module.exports = {
   invalidEmail,
   invalidPwd,
   validInputOutRole,
+  validFinded
 }

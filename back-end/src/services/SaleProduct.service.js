@@ -11,18 +11,6 @@ class SaleProduct extends SuperService {
 
     return { type: null, payload: result0.dataValues };
   }
-
-  async findAllSaleProduct(obj) {
-    const result0 = await super.findAll(obj);
-
-    if (result0.length === 0) return { type: 'NOT_FOUND', payload: result0 };
-
-    const payload = result0.map((item) => item);
-
-    return { type: null, payload };
-  }
 }
 
-module.exports = {
-  SaleProduct,
-};
+module.exports = { SaleProduct };

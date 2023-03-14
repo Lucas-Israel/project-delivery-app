@@ -1,6 +1,6 @@
 const { SaleService } = require('../services/Sale.service');
 const { SaleProduct } = require('../services/SaleProduct.service');
-const { verifyToken } = require('../auth/jwtFunctions');
+const verifiers = require('../auth/jwtFunctions');
 const { getStatusCode } = require('./helpers/htmlcodes');
 
 class SaleController {
@@ -16,7 +16,7 @@ class SaleController {
     try {
       const { totalPrice, deliveryAddress, deliveryNumber, products } = req.body;
       const { authorization } = req.headers;
-      const { id } = verifyToken(authorization);
+      const { id } = verifiers.verifyToken(authorization);
       const result = await this.SaleService
         .createSale({
           userId: id, totalPrice, deliveryAddress, deliveryNumber, status: 'Pendente' });
@@ -34,7 +34,7 @@ class SaleController {
   async getSales(req, res) {
     try {
       const { authorization } = req.headers;
-      const { id, role } = verifyToken(authorization);
+      const { id, role } = verifiers.verifyToken(authorization);
       const { type, payload } = await this.SaleService.getSales({ userId: id, role });
       if (type) return res.status(getStatusCode(type)).json({ payload });
       return res.status(200).json(payload);
