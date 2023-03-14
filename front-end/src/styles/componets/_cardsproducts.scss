@@ -47,7 +47,7 @@
     width: 100%;
     h1 {
       font-family: $font;
-      color: $cor-text-dark;
+      color: $cor-text-1;
       font-weight: $md;
       text-align: center;
     }
@@ -103,7 +103,7 @@
         width: 40px;
         text-align: center;
         outline: none;
-        border: solid 1px $cor-text-light;
+        border: solid 1px $cor-text-2;
         &::-webkit-outer-spin-button,
         &::-webkit-inner-spin-button {
             /* display: none; <- Crashes Chrome on hover */

@@ -4,7 +4,7 @@ import { FaGoogle, FaApple } from 'react-icons/fa';
 
 import { loginUser } from '../httpClient';
 import logo from '../images/logo.png';
-import bg from '../images/background.webp';
+import bg from '../images/background.png';
 
 function Login({ history }) {
   const inputRef = useRef();

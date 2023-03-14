@@ -16,6 +16,7 @@ function VendorDetails() {
       const resultSale = sales.filter((sale) => sale.id === Number(id))[0];
       setExpectedSale(resultSale);
       setProducts(resultSale.SalesProducts);
+      setSTatusOrder(resultSale.status);
     };
     getProducts();
   }, [id, statusOrder]);
@@ -33,94 +34,126 @@ function VendorDetails() {
     if (!error) setSTatusOrder(target.value);
   };
 
+  const dataIds = {
+    id: 'seller_order_details__element-order-details-label-order-id',
+    date: 'seller_order_details__element-order-details-label-order-date',
+    statusId: 'seller_order_details__element-order-details-label-delivery-status',
+    prepara: 'seller_order_details__button-preparing-check',
+    envia: 'seller_order_details__button-dispatch-check',
+    prodId: (i) => `seller_order_details__element-order-table-item-number-${i}`,
+    prodName: (i) => `seller_order_details__element-order-table-name-${i}`,
+    prodQuant: (i) => `seller_order_details__element-order-table-quantity-${i}`,
+    prodUnitPrice: (i) => `seller_order_details__element-order-table-unit-price-${i}`,
+    prodPrice: (i) => `seller_order_details__element-order-table-sub-total-${i}`,
+  };
+
   return (
-    <div>
+    <div className="vendor-details">
       <NavBar />
-      <p>Detalhes do Pedido</p>
-      <div>
-        <span
-          data-testid="seller_order_details__element-order-details-label-order-id"
-        >
-          { `PEDIDO ${id}` }
-        </span>
-        <span
-          data-testid="seller_order_details__element-order-details-label-order-date"
-        >
-          {(((expectedSale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')
-            .split('/').reverse().join('/')}
-        </span>
-        <span
-          data-testid="seller_order_details__element-order-details-label-delivery-status"
-        >
-          { expectedSale.status }
-        </span>
-        <button
-          type="button"
-          value="Preparando"
-          data-testid="seller_order_details__button-preparing-check"
-          onClick={ handleStatus }
-          disabled={ statusOrder !== 'Preparando' || statusOrder !== 'Em Trânsito' }
-        >
-          PREPARAR PEDIDO
-        </button>
-        <button
-          type="button"
-          value="Em Trânsito"
-          data-testid="seller_order_details__button-dispatch-check"
-          onClick={ handleStatus }
-          disabled={ statusOrder !== 'Pendente' || statusOrder !== 'Em Trânsito' }
-        >
-          SAIU PARA ENTREGA
-        </button>
-      </div>
-      {
-        products.map((prod) => (
-          <div
-            key={ `prodSeller${prod.Product.id}` }
+      <div className="details-container">
+        <p>Detalhes do Pedido</p>
+        <div className="details-order">
+          <span
+            data-testid={ dataIds.id }
           >
+            { `PEDIDO ${id}` }
+          </span>
+          <span
+            data-testid={ dataIds.date }
+          >
+            {(((expectedSale.saleDate) || 'T').split('T')[0]).replaceAll('-', '/')
+              .split('/').reverse().join('/')}
+          </span>
+          <span
+            data-testid={ dataIds.statusId }
+          >
+            { expectedSale.status }
+          </span>
+          <button
+            type="button"
+            className="preparando"
+            value="Preparando"
+            data-testid={ dataIds.prepara }
+            onClick={ handleStatus }
+            disabled={ statusOrder !== 'Pendente' }
+            style={
+              statusOrder !== 'Pendente'
+                ? { opacity: 0.1 } : {}
+            }
+          >
+            PREPARAR PEDIDO
+          </button>
+          <button
+            type="button"
+            className="saiu"
+            value="Em Trânsito"
+            data-testid={ dataIds.envia }
+            onClick={ handleStatus }
+            style={
+              statusOrder !== 'Preparando'
+                ? { opacity: 0.1 } : {}
+            }
+            disabled={ statusOrder !== 'Preparando' }
+          >
+            SAIU PARA ENTREGA
+          </button>
+        </div>
+        {
+          products.map((prod, index) => (
             <div
-              data-testid="seller_order_details__element-order-table-item-number-<index>"
+              className="list-item"
+              key={ `prodSeller${index}` }
             >
-              { prod.Product.id }
+              <div
+                className="item-1"
+                data-testid={ dataIds.prodId(index) }
+              >
+                { index + 1 }
 
-            </div>
-            <div
-              data-testid="seller_order_details__element-order-table-name-<index>"
-            >
-              { prod.Product.name }
+              </div>
+              <div
+                className="item-2"
+                data-testid={ dataIds.prodName(index) }
+              >
+                { prod.Product.name }
 
-            </div>
-            <div
-              data-testid="seller_order_details__element-order-table-quantity-<index>"
-            >
-              { prod.quantity }
+              </div>
+              <div
+                className="item-3"
+                data-testid={ dataIds.prodQuant(index) }
+              >
+                { prod.quantity }
 
-            </div>
-            <div
-              data-testid="seller_order_details__element-order-table-unit-price-<index>"
-            >
-              { prod.Product.price.replace('.', ',') }
+              </div>
+              <div
+                className="item-4"
+                data-testid={ dataIds.prodUnitPrice(index) }
+              >
+                { prod.Product.price.replace('.', ',') }
 
+              </div>
+              <div
+                className="item-5"
+                data-testid={ dataIds.prodPrice(index) }
+              >
+                {
+                  (Number(prod.Product.price) * Number(prod.quantity)).toFixed(2)
+                    .toString().replace('.', ',')
+                }
+              </div>
             </div>
-            <div
-              data-testid="seller_order_details__element-order-table-sub-total-<index>"
-            >
-              {
-                (Number(prod.Product.price) * Number(prod.quantity)).toFixed(2)
-                  .toString().replace('.', ',')
-              }
-            </div>
-          </div>
-        ))
-      }
-      <h1
-        data-testid="seller_order_details__element-order-total-price"
-      >
-        TOTAL R$
-        {' '}
-        { totalPrice.toFixed(2).toString().replace('.', ',') }
+          ))
+        }
+        <h1
+          className="total"
+          data-testid="seller_order_details__element-order-total-price"
+        >
+          TOTAL R$
+          {' '}
+          { totalPrice.toFixed(2).toString().replace('.', ',') }
 
-      </h1>
+        </h1>
+      </div>
     </div>
   );
 }

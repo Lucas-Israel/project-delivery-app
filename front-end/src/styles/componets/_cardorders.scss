@@ -1,0 +1,75 @@
+@import '../abstract/variaveis';
+
+.card-orders {
+  font-family: $font;
+  display: flex;
+  width: 400px;
+  height: 70px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: all 0.4s ease-in-out;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+  &:hover .status h2 {
+    animation-name: vertical-pull;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+  }
+  .pedido {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .date-status-price {
+    display: flex;
+    color: $cor-text-1;
+    font-weight: $b;
+    width: 70%;
+    background-color: $cor-cinza;
+    border-radius: 0 8px 8px 0;
+    padding: 5px 10px;
+    height: 100%;
+    align-items: center;
+    .status {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 55%;
+      padding: 30px 20px;
+      border-radius: 8px;
+    }
+    .date-price {
+      height: 100%;
+      // font-size: $tamanho-do-texto / 3.5;
+      text-align: right;
+      width: 45%;
+      display: flex;
+      padding-left: 10px;
+      flex-direction: column;
+      justify-content: space-between;
+      .date {
+        padding: 5px 10px;
+        background-color: $cor-text-2;
+        border-radius: 4px;
+      }
+      .price {
+        padding: 5px 10px;
+        background-color: $cor-text-2;
+        border-radius: 4px;
+        &::before {
+          content: 'R$ ';
+        }
+      }
+    }
+  }
+}

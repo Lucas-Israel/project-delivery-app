@@ -36,7 +36,7 @@ function DeliveryDetails({ history }) {
       <h1>Detalhes e Endereço para Entrega</h1>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="responsible seller">
-          P.vendedor responsável
+          Vendedor responsável:
           <select
             required="true"
             name="responsible seller"
@@ -47,9 +47,10 @@ function DeliveryDetails({ history }) {
             ))}
           </select>
         </label>
-        <label htmlFor="adress">
-          Endereço
+        <label htmlFor="adress" className="adress">
+          Endereço:
           <input
+            placeholder="Rua Tal, Bairro, Cidade"
             type="adress"
             name="adress"
             id="adress"
@@ -58,10 +59,11 @@ function DeliveryDetails({ history }) {
             data-testid="customer_checkout__input-address"
           />
         </label>
-        <label htmlFor="house number">
-          numero
+        <label htmlFor="house number" className="adress-number">
+          numero:
           <input
             type="number"
+            placeholder="000"
             name="house number"
             id="houseNumber"
             value={ houseNumber }

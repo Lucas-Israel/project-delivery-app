@@ -1,0 +1,36 @@
+.orders {
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  .container-orders {
+    padding: 0 5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: $xxl) {
+  .orders {
+    .container-orders {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: $lg) {
+  .orders {
+    .container-orders {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .orders {
+    .container-orders {
+      grid-template-columns: 1fr;
+      padding: 0;
+    }
+  }
+}

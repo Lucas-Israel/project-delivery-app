@@ -1,7 +1,9 @@
 @import '../abstract/variaveis';
 
 .checkout {
-  // background-color: $cor-text-light;
+  &.dark-mode {
+    @include dark-mode();
+  }
   padding: 80px 0;
   min-height: 100vh;
   .checkout-details {

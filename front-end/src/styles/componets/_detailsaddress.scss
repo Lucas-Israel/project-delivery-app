@@ -8,28 +8,56 @@
     position: relative;
     display: flex;
     margin: 20px 0;
+    gap: 10px;
     label {
       display: flex;
-      width: 33%;
+      width: 30%;
       flex-direction: column;
       input, select {
+        margin-top: 5px;
         font-size: $tamanho-do-texto / 3;
         padding: 8px 16px;
         border: solid 1px $cor-primaria;
         border-radius: 4px;
         outline: none;
         &:focus, &:hover {
-          border: solid 1px $cor-primaria !important;
+          border: solid 1px $cor-verde-escuro !important;
+        }
+      }
+    }
+    .adress {
+      width: 60%;
+    }
+    .adress-number {
+      width: 10%;
+      input {
+        text-align: center;
+        outline: none;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
         }
       }
     }
     button {
       position: absolute;
+      cursor: pointer;
+      background-color: $cor-verde-escuro;
+      transition: all 0.4s ease;
+      border: none;
+      font-weight: $b;
+      color: $cor-text-2;
+      border-radius: 5px;
       padding: 16px 32px;
       width: 40%;
       top: 120%;
       right: 30%;
       left: 30%;
+      &:hover {
+        background-color: $cor-verde;
+      }
     }
   }
 }

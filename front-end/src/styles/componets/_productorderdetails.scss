@@ -21,27 +21,28 @@
     }
     .item-checkout-2 {
       width: 30%;
-      background-color: $cor-text-light;
+      background-color: $cor-text-2;
     }
     .item-checkout-3 {
       width: 5%;
-      color: $cor-text-light;
+      color: $cor-text-2;
       background-color: $cor-verde-escuro;
     }
     .item-checkout-4 {
       width: 20%;
-      color: $cor-text-light;
+      color: $cor-text-2;
       background-color: $cor-terciaria;
     }
     .item-checkout-5 {
       width: 20%;
-      color: $cor-text-light;
+      color: $cor-text-2;
       background-color: $cor-quartenaria;
     }
     .item-checkout-6 {
       width: 20%;
+      cursor: pointer;
       background-color: $cor-verde;
-      color: $cor-text-light;
+      color: $cor-text-2;
       font-weight: $sb;
       border-radius: 0 4px 4px 0;
       border: none;
@@ -56,5 +57,16 @@
         }
       }
     }
+    // .itemNone {
+    //   background-color: transparent;
+    //   cursor: default;
+    //   &:hover {
+    //     background-color: transparent;
+    //     transform: none;
+    //     &::before {
+    //       display: none;
+    //     }
+    //   }
+    // }
   }
 }

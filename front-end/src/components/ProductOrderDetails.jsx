@@ -29,6 +29,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           <h3
             className="item-checkout-2 card-item"
             data-testid={ `customer_${rota}__element-order-table-name-${i}` }
+            style={ !removeOrderProduct ? { width: '50%' } : {} }
           >
             {product.title}
           </h3>
@@ -66,7 +67,7 @@ function ProductsOrderDetails({ removeOrderProduct, products }) {
           </h3>
           {
             removeOrderProduct
-            && removerBtn(product, i)
+              ? (removerBtn(product, i)) : null
           }
         </li>
       ))

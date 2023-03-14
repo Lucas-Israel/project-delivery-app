@@ -1,6 +1,9 @@
 @import '../abstract/variaveis';
 
 .navbar {
+  .hamburguer {
+    display: none;
+  }
   position: fixed;
   top: 0;
   display: flex;
@@ -9,13 +12,21 @@
   font-family: $font;
   height: 60px;
   z-index: 2;
+  .nav-item-logo {
+    background-color: white;
+    border: solid 1px $cor-primaria;
+    width: 10%;
+    img {
+      width: 50px;
+    }
+  }
   div {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     a, h2 {
-      color: $cor-text-light;
+      color: $cor-text-2;
       font-weight: $sb;
     }
     a {
@@ -25,52 +36,132 @@
       }
     }
   }
-  .nav-item-logo {
-    background-color: white;
-    border: solid 1px $cor-primaria;
-    width: 10%;
-    img {
-      width: 50px;
+  .nav-list {
+    width: 100%;
+    .nav-item-1 {
+      background-color: $cor-primaria;
+      width: 20%;
     }
-  }
-  .nav-item-1 {
-    background-color: $cor-primaria;
-    width: 20%;
-  }
-  .nav-item-2 {
-    background-color: $cor-terciaria;
-    width: 40%;
-  }
-  .nav-item-3 {
-    display: flex;
-    align-items: center;
-    background-color: $cor-text-light;
-    width: 20%;
-    h2 {
-      color: $cor-text-dark;
-      height: 100%;
+    .nav-item-2 {
+      background-color: $cor-terciaria;
+      width: 50%;
+    }
+    .nav-item-3 {
       display: flex;
       align-items: center;
-      position: relative;
-      .icon-person {
-        position: absolute;
-        font-size: 20px;
-        left: -24px;
-        top: 15px;
+      background-color: $cor-text-2;
+      width: 30%;
+      h2 {
+        color: $cor-text-1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        .icon-person {
+          position: absolute;
+          font-size: 20px;
+          left: -24px;
+          top: 15px;
+        }
       }
     }
+    .nav-item-4 {
+      background-color: $cor-quartenaria;
+      width: 20%;
+      display: flex;
+      align-items: center;
+      a {
+        position: relative;
+        .ico-logout {
+          position: absolute;
+          font-size: 20px;
+          top: -1px;
+          left: -24px;
+        }
+      }
+    }
+
   }
-  .nav-item-4 {
-    background-color: $cor-quartenaria;
-    width: 10%;
-    display: flex;
-    align-items: center;
-    a {
-      position: relative;
-      .ico-logout {
-        position: absolute;
-        top: -1px;
-        left: -24px;
+}
+
+@media screen and (max-width: $lg) {
+  .navbar {
+    font-size: $tamanho-do-texto / 4;
+    .nav-item-logo {
+      background-color: white;
+      border: solid 1px $cor-primaria;
+      width: 100%;
+      img {
+        width: 50px;
+      }
+    }
+    .nav-list {
+      position: absolute;
+      width: 50vw;
+      flex-direction: column;
+      height: 100vh;
+      background-color: $cor-primaria;
+      right: 0;
+      transition: all 0.5s linear;
+      transform: translateX(50vw);
+      div {
+        width: 100% !important;
+      }
+      .nav-item-3 {
+        background-color: white;
+        h2 {
+          .icon-person {
+            top: 45%;
+          }
+        }
+      }
+      .nav-item-4 {
+        a {
+          .ico-logout {
+            top: -40%;
+          }
+        }
+      }
+    }
+    .hamburguer {
+      z-index: 2;
+      cursor: pointer;
+      position: absolute;
+      border-style: none;
+      background-color: transparent;
+      top: 40%;
+      right: 2%;
+      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 16px;
+      div {
+        transition: all 0.4s ease-in-out;
+        height: 2px;
+        width: 20px;
+        background-color: black;
+      }
+      &.active-hamburguer {
+        justify-content: center;
+        div {
+          background-color: white;
+        }
+      }
+      .line-2 {
+        &.active-line-2 {
+          display: none;
+        }
+      }
+      .line-1 {
+        &.active-line-1 {
+          transform: rotate(45deg) translateY(1px);
+        }
+      }
+      .line-3 {
+        &.active-line-3 {
+          transform: rotate(-45deg)  translateY(-1px);
+        }
       }
     }
   }

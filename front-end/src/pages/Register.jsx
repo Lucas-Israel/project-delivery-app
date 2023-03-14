@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { registUser } from '../httpClient';
 
 import logo from '../images/logo.png';
-import bg from '../images/background.webp';
+import bg from '../images/background.png';
 
 function Register({ history }) {
   const inputRef = useRef();
