@@ -3,7 +3,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../api/app');
 const { Sale,SalesProduct,User} = require('../database/models');
-const { validOutput, validInput, gettedSales, verificationOutput } = require('./mocks/sales.mock');
+const { validOutput, validInput, gettedSales, verificationOutput, output } = require('./mocks/sales.mock');
 const verifiers = require('../auth/jwtFunctions');
 const { withoutDataValues } = require('./mocks/login.mock');
 chai.use(chaiHttp);
@@ -29,7 +29,6 @@ describe('Testing endpoint "/sales"', () => {
         .send(validInput);
 
       expect(response.status).to.be.equal(201);
-      // expect(response.body).to.deep.equal(validOutput)
     });
 
     it('internal Error', async () => {
@@ -112,16 +111,16 @@ describe('Testing endpoint "/sales"', () => {
 
     expect(response.status).to.be.equal(200);
   });
+
   it('verify if i can get all users', async () => {
     sinon
       .stub(User, "findAll")
-      .resolves('');
-
+      .resolves(output);
 
       const response = await chai
       .request(app)
-      .get('/manager')
+      .get('/admin/manager');
 
-    expect(response.status).to.be.equal(404);
+    expect(response.status).to.be.equal(200);
   });
 })

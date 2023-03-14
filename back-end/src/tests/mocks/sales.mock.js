@@ -65,9 +65,37 @@ const gettedSales = [
 
 const verificationOutput = { id:1, role:'customer',name:'iare',email:'ikj98uhy7gt6rf5de4@gmail.com' }
 
+const output = [
+  {
+    "id": 1,
+    "name": "Delivery App Admin",
+    "email": "adm@deliveryapp.com",
+    "role": "administrator"
+  },
+  {
+    "id": 2,
+    "name": "Fulana Pereira",
+    "email": "fulana@deliveryapp.com",
+    "role": "seller"
+  },
+  {
+    "id": 3,
+    "name": "Cliente Zé Birita",
+    "email": "zebirita@email.com",
+    "role": "customer"
+  },
+  {
+    "id": 4,
+    "name": "Delivery App Admin",
+    "email": "ludson_ps28@hotmail.com",
+    "role": "customer"
+  }
+]
+
 module.exports = {
   validInput,
   validOutput,
   gettedSales,
-  verificationOutput
+  verificationOutput,
+  output
 }
