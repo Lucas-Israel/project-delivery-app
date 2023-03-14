@@ -5,7 +5,6 @@ const app = require('../api/app');
 const { Sale,SalesProduct,User} = require('../database/models');
 const { validOutput, validInput, gettedSales, verificationOutput, output } = require('./mocks/sales.mock');
 const verifiers = require('../auth/jwtFunctions');
-const { withoutDataValues } = require('./mocks/login.mock');
 chai.use(chaiHttp);
 
 const { expect } = chai;
@@ -55,6 +54,7 @@ describe('Testing endpoint "/sales"', () => {
       expect(response.body.message).to.deep.equal('Erro ao criar uma venda no banco');
       expect(response.body.error).to.deep.equal('db query failed');
     });
+    
     it('array error', async () => {
       sinon
         .stub(Sale, 'create')
@@ -76,6 +76,7 @@ describe('Testing endpoint "/sales"', () => {
       expect(response.body.message).to.deep.equal('Body needs the products key to be an array');
       
     });
+
     it('object error', async () => {
       sinon
         .stub(Sale, 'create')
