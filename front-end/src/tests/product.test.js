@@ -17,7 +17,7 @@ const products = [
     id: 1,
     name: 'Product 1',
     price: '10.0',
-    urlImage: 'https://example.com/product1.png', 
+    urlImage: 'https://example.com/product1.png',
   },
   {
     id: 2,
@@ -27,26 +27,24 @@ const products = [
   },
 ];
 
-const totalValue = 30
-
+const totalValue = 30;
 
 describe('Products page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  
+
   it('Checks that all products are returned successfully.', async () => {
     await act(async () => {
       httpClient.get = jest.fn().mockResolvedValue({ data: products });
       renderWithRouter(<App />, ['/customer/products']);
     });
 
-    
     const btnCart = screen.getAllByTestId(dataBtnCart);
     const total = screen.getByTestId(dataBtnCheckout);
     const imageProduct = screen.getByTestId(dataImg1);
-    
-    expect(btnCart).toHaveLength(3)
+
+    expect(btnCart).toHaveLength(3);
     expect(total).toBeInTheDocument();
     expect(screen.getByText('Product 1')).toBeInTheDocument();
     expect(screen.getByText('Product 2')).toBeInTheDocument();
@@ -59,15 +57,14 @@ describe('Products page', () => {
       httpClient.get = jest.fn().mockResolvedValue({ data: products });
       renderWithRouter(<App />, ['/customer/products']);
     });
-    
+
     const btnCartPlus = screen.getByTestId(dataPlus1);
     const total = screen.getByTestId(dataTotal);
 
     userEvent.click(btnCartPlus);
-    
-    expect(btnCartPlus).toBeInTheDocument()
-    expect(total).toBeInTheDocument()
-    expect(total).toHaveTextContent('10,00')
-  });
 
+    expect(btnCartPlus).toBeInTheDocument();
+    expect(total).toBeInTheDocument();
+    expect(total).toHaveTextContent('10,00');
+  });
 });

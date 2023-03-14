@@ -23,6 +23,4 @@ class SaleProduct extends SuperService {
   }
 }
 
-module.exports = {
-  SaleProduct,
-};
+module.exports = { SaleProduct };
