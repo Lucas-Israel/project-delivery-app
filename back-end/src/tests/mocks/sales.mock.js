@@ -63,7 +63,7 @@ const gettedSales = [
   }
 ]
 
-const verificationOutput = { id:1, role:'customer',name:'iare',email:'ikj98uhy7gt6rf5de4' }
+const verificationOutput = { id:1, role:'customer',name:'iare',email:'ikj98uhy7gt6rf5de4@gmail.com' }
 
 module.exports = {
   validInput,
