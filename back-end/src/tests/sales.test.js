@@ -10,7 +10,6 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 describe('Testing endpoint "/sales"', () => {
-  describe('Register a sale', function() {
     afterEach(sinon.restore);
     
     it('successfully', async () => {
@@ -18,6 +17,10 @@ describe('Testing endpoint "/sales"', () => {
         .stub(Sale, "create")
         .resolves(validOutput);
       
+      sinon
+        .stub(verifiers, "verifyToken")
+        .resolves(verificationOutput);
+
       sinon
         .stub(SalesProduct, 'create')
         .resolves('nothing');
@@ -94,7 +97,7 @@ describe('Testing endpoint "/sales"', () => {
       expect(response.body.message).to.deep.equal('A Key of an object in array needs to be quantity');
       
     });
-  }) 
+ 
 
   it('verify if i can get all sales', async () => {
     sinon
@@ -110,6 +113,39 @@ describe('Testing endpoint "/sales"', () => {
       .get('/sales')
 
     expect(response.status).to.be.equal(200);
+  });
+
+  it('verify if i can update a up', async () => {
+    sinon
+      .stub(Sale, "update")
+      .resolves({id:1});
+
+    sinon
+      .stub(verifiers, "verifyToken")
+      .resolves(verificationOutput);
+
+      const response = await chai
+      .request(app)
+      .patch('/sales/1').send({status:'brabão'});
+
+    expect(response.status).to.be.equal(200);
+
+  });
+
+
+  it('verify if i can not update a up', async () => {
+    sinon
+      .stub(Sale, "update")
+      .resolves();
+
+    sinon
+      .stub(verifiers, "verifyToken")
+      .resolves(verificationOutput);
+      const response = await chai
+      .request(app)
+      .patch('/sales/1').send({status:'brabão'});
+
+    expect(response.status).to.be.equal(404);
   });
 
   it('verify if i can get all users', async () => {
