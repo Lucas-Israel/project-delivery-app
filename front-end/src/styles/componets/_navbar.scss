@@ -39,8 +39,8 @@
   .nav-list {
     width: 100%;
     .x {
-      transition: all 0.5s linear;
-      transform: translateX(100vw) !important;
+      display: none;
+      transition: all 0.5s ease-in-out;
       cursor: pointer;
       border-style: none;
       z-index: -1;
@@ -119,7 +119,7 @@
       transition: all 0.5s linear;
       transform: translateX(50vw);
       .open {
-        transform: translateX(0) !important;
+        display: block;
       }
       div {
         width: 100% !important;
