@@ -73,3 +73,9 @@
     }
   }
 }
+
+@media screen and (max-width: $lg) {
+  .card-orders {
+    font-size: $tamanho-do-texto / 4;
+  }
+}

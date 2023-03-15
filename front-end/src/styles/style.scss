@@ -10,6 +10,8 @@
 @import './componets/saledetailscontainer';
 @import './componets/cardorders';
 @import './componets/cardvendor';
+@import './componets/_adminregisteruser';
+@import './componets/usercard';
 
 // pages
 @import './pages/login';
@@ -19,3 +21,4 @@
 @import './pages/orders';
 @import './pages/vendor';
 @import './pages/vendordetails';
+@import './pages/admin';

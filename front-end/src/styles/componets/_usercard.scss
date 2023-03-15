@@ -1,0 +1,73 @@
+@import '../abstract/variaveis';
+
+.user-card {
+  display: flex;
+  margin-bottom: 5px;
+  height: 40px;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2px;
+  }
+  .item-checkout-1 {
+    width: 5%;
+    border-radius: 4px 0 0 4px;
+    background-color: $cor-verde;
+  }
+  .item-checkout-2 {
+    width: 25%;
+    background-color: $cor-text-2;
+  }
+  .item-checkout-3 {
+    width: 25%;
+    color: $cor-text-2;
+    background-color: $cor-verde-escuro;
+  }
+  .item-checkout-4 {
+    width: 25%;
+    color: $cor-text-2;
+    background-color: $cor-terciaria;
+  }
+  .item-checkout-5 {
+    width: 20%;
+    color: $cor-text-2;
+    background-color: $cor-quartenaria;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: $sb;
+    transition: all 0.4s ease;
+    border-style: none;
+    &:hover {
+      background-color: $cor-verde-active;
+      transform: scale(1.1);
+      &::before {
+        content: 'X';
+        color: $cor-verde-escuro;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $lg) {
+  .user-card {
+    justify-content: space-between;
+    div {
+      font-size: $tamanho-do-texto / 4;
+    }
+    .item-checkout-2 {
+      width: 20%;
+    }
+    .item-checkout-3 {
+      width: 40%;
+      word-wrap: break-word;
+    }
+    .item-checkout-4 {
+      width: 20%;
+    }
+    .item-checkout-5 {
+      width: 15%;
+    }
+  }
+}

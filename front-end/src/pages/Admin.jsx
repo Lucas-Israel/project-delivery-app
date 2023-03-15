@@ -41,10 +41,10 @@ function Admin() {
   };
 
   return (
-    <div>
+    <div className="admin">
       <NavBar />
-      <div>
-        <h3>
+      <div className="title-container">
+        <h3 className="page-title">
           Cadastrar novo usuário
         </h3>
         {
@@ -58,17 +58,19 @@ function Admin() {
         <AdminCreateNewUserForm adminRegisterUser={ adminRegisterUser } />
       </div>
 
-      <div>
-        Lista de usuários
-        {userList.map(({ id, name, email, role }, index) => (<UserCard
-          id={ id }
-          name={ name }
-          email={ email }
-          role={ role }
-          index={ index }
-          key={ index }
-          handleDeleteUser={ handleDeleteUser }
-        />))}
+      <div className="users-list-container">
+        <p>Lista de usuários</p>
+        <div className="users-list">
+          {userList.map(({ id, name, email, role }, index) => (<UserCard
+            id={ id }
+            name={ name }
+            email={ email }
+            role={ role }
+            index={ index }
+            key={ index }
+            handleDeleteUser={ handleDeleteUser }
+          />))}
+        </div>
       </div>
     </div>
   );
