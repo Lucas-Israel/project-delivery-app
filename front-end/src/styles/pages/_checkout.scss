@@ -5,8 +5,36 @@
     @include dark-mode();
   }
   padding: 80px 0;
+  width: 100vw;
   min-height: 100vh;
   .checkout-details {
     padding: 0 5vw;
+  }
+}
+
+@media screen and (max-width: $lg) {
+  .checkout {
+    .card-checkout {
+      .card {
+        font-size: $tamanho-do-texto / 4;
+        .item-checkout-2 {
+          padding: 0 5px;
+        }
+      }
+    }
+    .details-address-checkout {
+      margin-top: 40px;
+      form {
+        flex-direction: column;
+        label {
+          width: 100%;
+        }
+        button {
+          margin-top: 40px;
+          position: unset;
+          width: 100%;
+        }
+      }
+    }
   }
 }

@@ -49,7 +49,7 @@ function AdminCreateNewUserForm({ adminRegisterUser }) {
   };
 
   return (
-    <div>
+    <div className="admin-form-container">
       <form>
         <label htmlFor="nameInput">
           <span>Nome</span>

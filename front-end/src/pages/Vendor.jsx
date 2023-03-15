@@ -19,20 +19,22 @@ function Vendor() {
   return (
     <div className="vendor">
       <NavBar />
-      {
-        orders.map((order, index) => (
-          <CardVendor
-            key={ `order${order.id}` }
-            id={ order.id }
-            status={ order.status }
-            date={ (order.saleDate.split('T')[0]).replaceAll('-', '/')
-              .split('/').reverse().join('/') }
-            price={ order.totalPrice }
-            address={ `${order.deliveryAddress}, ${order.deliveryNumber}` }
-            index={ index }
-          />
-        ))
-      }
+      <div className="vendor-cards-container">
+        {
+          orders.map((order, index) => (
+            <CardVendor
+              key={ `order${order.id}` }
+              id={ order.id }
+              status={ order.status }
+              date={ (order.saleDate.split('T')[0]).replaceAll('-', '/')
+                .split('/').reverse().join('/') }
+              price={ order.totalPrice }
+              address={ `${order.deliveryAddress}, ${order.deliveryNumber}` }
+              index={ index }
+            />
+          ))
+        }
+      </div>
     </div>
   );
 }

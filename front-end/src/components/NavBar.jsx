@@ -57,7 +57,7 @@ function NavBar() {
         <img src={ logo } alt="logo" />
       </div>
       <div
-        className="nav-list"
+        className={ activeHamb ? ('activeNav nav-list') : ('nav-list') }
         style={ activeHamb ? {
           transform: 'translateX(0)',
         } : {} }

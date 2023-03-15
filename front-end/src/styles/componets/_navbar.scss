@@ -98,12 +98,14 @@
     .nav-list {
       position: absolute;
       width: 50vw;
+      z-index: 1;
       flex-direction: column;
       height: 100vh;
       background-color: $cor-primaria;
       right: 0;
       transition: all 0.5s linear;
       transform: translateX(50vw);
+      
       div {
         width: 100% !important;
       }
@@ -121,6 +123,20 @@
             top: -40%;
           }
         }
+      }
+    }
+    .activeNav {
+      &::before {
+        content: '';
+        transition: all 0.5s linear;
+        // cursor: pointer;
+        z-index: -1;
+        left: -100vw;
+        opacity: 0.6;
+        position: absolute;
+        background-color: black;
+        width: 100vw;
+        height: 100vh;
       }
     }
     .hamburguer {
