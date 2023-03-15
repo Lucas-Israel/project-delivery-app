@@ -51,17 +51,28 @@ function NavBar() {
     setActiveHamburguer(!activeHamb);
   };
 
+  const closeNavBarMobile = () => {
+    setActiveHamburguer(false);
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-item-logo">
         <img src={ logo } alt="logo" />
       </div>
       <div
-        className={ activeHamb ? ('activeNav nav-list') : ('nav-list') }
+        className="nav-list"
         style={ activeHamb ? {
           transform: 'translateX(0)',
         } : {} }
       >
+        <button
+          className={ activeHamb ? ('x open') : ('x') }
+          type="button"
+          onClick={ closeNavBarMobile }
+        >
+          close nav mobile
+        </button>
         <div className="nav-item-1">
           <Link
             to={ dataIds[role].rota }
