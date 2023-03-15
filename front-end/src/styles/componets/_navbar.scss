@@ -38,6 +38,19 @@
   }
   .nav-list {
     width: 100%;
+    .x {
+      display: none;
+      transition: all 0.5s ease-in-out;
+      cursor: pointer;
+      border-style: none;
+      z-index: -1;
+      left: -100vw;
+      opacity: 0.4;
+      position: absolute;
+      background-color: black;
+      width: 100vw;
+      height: 100vh;
+    }
     .nav-item-1 {
       background-color: $cor-primaria;
       width: 20%;
@@ -105,7 +118,9 @@
       right: 0;
       transition: all 0.5s linear;
       transform: translateX(50vw);
-      
+      .open {
+        display: block;
+      }
       div {
         width: 100% !important;
       }
@@ -125,20 +140,7 @@
         }
       }
     }
-    .activeNav {
-      &::before {
-        content: '';
-        transition: all 0.5s linear;
-        // cursor: pointer;
-        z-index: -1;
-        left: -100vw;
-        opacity: 0.6;
-        position: absolute;
-        background-color: black;
-        width: 100vw;
-        height: 100vh;
-      }
-    }
+    
     .hamburguer {
       z-index: 2;
       cursor: pointer;
