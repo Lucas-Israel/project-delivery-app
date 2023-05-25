@@ -1,4 +1,4 @@
-const sinon=  require('sinon');
+const sinon = require('sinon');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
@@ -10,9 +10,9 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 describe('Testing endpoint "/register"', () => {
-  describe('Registering a user', function() {
+  describe('Registering a user', function () {
     afterEach(sinon.restore);
-    
+
     it('successfully', async () => {
       sinon
         .stub(User, "findOne")
@@ -21,12 +21,12 @@ describe('Testing endpoint "/register"', () => {
       sinon
         .stub(User, 'create')
         .resolves(validataValues);
-      
+
       const response = await chai
         .request(app)
         .post('/register')
         .send(validInput);
-    
+
       expect(response.status).to.be.equal(201);
       expect(response.body).to.have.property('token')
     });
@@ -39,12 +39,12 @@ describe('Testing endpoint "/register"', () => {
       sinon
         .stub(User, 'create')
         .resolves(validataValues);
-      
+
       const response = await chai
         .request(app)
         .post('/register')
         .send(validInputOutRole);
-    
+
       expect(response.status).to.be.equal(201);
       expect(response.body).to.have.property('token')
     });
@@ -52,7 +52,7 @@ describe('Testing endpoint "/register"', () => {
     it('if the email already exists', async () => {
       sinon
         .stub(User, "findOne")
-        .resolves(token); // esse ta dando problema
+        .resolves(validataValues); // esse ta dando problema
 
       const response = await chai
         .request(app)
@@ -87,7 +87,7 @@ describe('Testing endpoint "/register"', () => {
       sinon
         .stub(User, 'findOne')
         .throws(Error('db query failed'))
-  
+
 
       const response = await chai
         .request(app)
@@ -98,6 +98,6 @@ describe('Testing endpoint "/register"', () => {
       expect(response.body.message).to.deep.equal('Erro ao criar usuário no banco');
       expect(response.body.error).to.deep.equal('db query failed');
     });
-    
-  }) 
+
+  })
 })
