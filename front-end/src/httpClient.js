@@ -4,7 +4,7 @@ const helpers = require('./helpers').default;
 
 const { getCartProducts, getTotal } = helpers;
 
-const backendUrl = (endpoint) => `http://localhost:3001/${endpoint}`;
+const backendUrl = (endpoint) => `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/${endpoint}`;
 
 const httpClient = axios.create();
 
